@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Tackle",
+    "power": 40,
+    "accuracy": 100
+  },
+  {
+    "name": "Scratch",
+    "power": 40,
+    "accuracy": 100
+  },
+  {
+    "name": "Growl",
+    "power": 40,
+    "accuracy": 100
+  },
+  {
+    "name": "Tail Whip",
+    "power": 40,
+    "accuracy": 100
+  }
+]

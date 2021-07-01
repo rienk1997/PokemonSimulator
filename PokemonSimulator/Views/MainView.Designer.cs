@@ -53,7 +53,7 @@
 
     #endregion
 
-    private System.Windows.Forms.ListBox logBox;
+    public System.Windows.Forms.ListBox logBox;
   }
 }
 

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PokemonSimulator.Models;
 
 namespace PokemonSimulator
 {
@@ -16,7 +18,7 @@ namespace PokemonSimulator
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new MainView());
+      Application.Run(MainView.GetInstance);
     }
   }
 }

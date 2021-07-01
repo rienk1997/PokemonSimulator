@@ -1,0 +1,17 @@
+[
+  {
+    "pokedexNumber": 1,
+    "name": "Bulbasaur",
+    "HP": 100
+  },
+  {
+    "pokedexNumber": 4,
+    "name": "Charmander",
+    "HP": 100
+  },
+  {
+    "pokedexNumber": 7,
+    "name": "Squirtle",
+    "HP": 100
+  }
+]
