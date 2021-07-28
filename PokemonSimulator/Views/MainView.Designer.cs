@@ -29,6 +29,7 @@
     private void InitializeComponent()
     {
       this.logBox = new System.Windows.Forms.ListBox();
+      this.nextBtn = new System.Windows.Forms.Button();
       this.SuspendLayout();
       // 
       // logBox
@@ -39,11 +40,22 @@
       this.logBox.Size = new System.Drawing.Size(747, 238);
       this.logBox.TabIndex = 0;
       // 
+      // nextBtn
+      // 
+      this.nextBtn.Location = new System.Drawing.Point(28, 27);
+      this.nextBtn.Name = "nextBtn";
+      this.nextBtn.Size = new System.Drawing.Size(88, 23);
+      this.nextBtn.TabIndex = 1;
+      this.nextBtn.Text = "Volgende actie";
+      this.nextBtn.UseVisualStyleBackColor = true;
+      this.nextBtn.Click += new System.EventHandler(this.nextBtn_Click);
+      // 
       // MainView
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(800, 450);
+      this.Controls.Add(this.nextBtn);
       this.Controls.Add(this.logBox);
       this.Name = "MainView";
       this.Text = "Pokemon Battle Simulator";
@@ -54,6 +66,7 @@
     #endregion
 
     public System.Windows.Forms.ListBox logBox;
+    private System.Windows.Forms.Button nextBtn;
   }
 }
 
