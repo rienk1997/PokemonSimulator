@@ -2,6 +2,7 @@
 using PokemonSimulator.Parsers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -86,29 +87,22 @@ namespace PokemonSimulator
         Instance.logBox.Items.Add(ActivePokemon2.Name + "s HP is dropped from" + ActivePokemon2.CurrentHP + " to " + (ActivePokemon2.CurrentHP - move.Power));
         ActivePokemon2.CurrentHP -= move.Power;
 
-        // Check of hp <= 0
         if (ActivePokemon2.CurrentHP <= 0)
         {
           Instance.logBox.Items.Add(ActivePokemon2.Name + "has fainted.");
           ActivePokemon2 = null;
         }
-
-        // ALS hp <= 0 -> active pokemon = null
-        // logbox zeggen dat pokemon gefaint is
       }
       else
       {
         Instance.logBox.Items.Add(ActivePokemon1.Name + "s HP is dropped from" + ActivePokemon1.CurrentHP + " to " + (ActivePokemon1.CurrentHP - move.Power));
         ActivePokemon1.CurrentHP -= move.Power;
 
-        // Check of hp <= 0
         if (ActivePokemon1.CurrentHP <= 0)
         {
           Instance.logBox.Items.Add(ActivePokemon1.Name + "has fainted.");
           ActivePokemon1 = null;
         }
-        // ALS hp <= 0 -> active pokemon = null
-        // logbox zeggen dat pokemon gefaint is
       }
 
       return true;
@@ -136,7 +130,7 @@ namespace PokemonSimulator
         catch (Exception e)
         {
           Instance.logBox.Items.Add(Trainer2.Name + " has no usable pokemon");
-          return true;
+          throw new FileNotFoundException("Geen bruikbare pokemon gevonden");
         }
         Instance.logBox.Items.Add(Trainer2.Name + " sent out his " + ActivePokemon2.Name);
         {
