@@ -35,19 +35,19 @@ namespace PokemonSimulator.Parsers
 
     private void ReadData()
     {
-      using (StreamReader r = new StreamReader("D:/Projects/C#/PokemonSimulator/PokemonSimulator/Data/Trainers.json"))
+      using (StreamReader r = new StreamReader("../..//Data/Trainers.json"))
       {
         string json = r.ReadToEnd();
         Trainers = JsonConvert.DeserializeObject<List<Trainer>>(json);
       }
 
-      using (StreamReader r = new StreamReader("D:/Projects/C#/PokemonSimulator/PokemonSimulator/Data/Pokemon.json"))
+      using (StreamReader r = new StreamReader("../../Data/Pokemon.json"))
       {
         string json = r.ReadToEnd();
         Pokemon = JsonConvert.DeserializeObject<List<Pokemon>>(json);
       }
 
-      using (StreamReader r = new StreamReader("D:/Projects/C#/PokemonSimulator/PokemonSimulator/Data/Moves.json"))
+      using (StreamReader r = new StreamReader("../../Data/Moves.json"))
       {
         string json = r.ReadToEnd();
         Moves = JsonConvert.DeserializeObject<List<Move>>(json);

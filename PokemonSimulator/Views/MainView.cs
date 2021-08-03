@@ -5,19 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PokemonSimulator.Actions;
 
 namespace PokemonSimulator
 {
   public partial class MainView : Form
   {
-    private int Turn { get; set; }
-    private Trainer Trainer1 { get; set; }
-    private Trainer Trainer2 { get; set; }
+    public SimulationState State { get; set; }
+    public int Turn { get; set; }
+    public Trainer Trainer1 { get; set; }
+    public Trainer Trainer2 { get; set; }
+    public Pokemon ActivePokemon1 { get; set; }
+    public Pokemon ActivePokemon2 { get; set; }
 
-    private Pokemon ActivePokemon1 { get; set; }
-    private Pokemon ActivePokemon2 { get; set; }
-
-    private static MainView Instance = null;
+    private static MainView Instance;
 
     public ICollection<Trainer> Trainers { get; set; }
 
@@ -28,8 +29,8 @@ namespace PokemonSimulator
         if (Instance == null)
         {
           Instance = new MainView();
+          Instance.logBox.Items.Add("Initiating MainView Instance");
         }
-        Instance.logBox.Items.Add("Get MainView Instance");
         return Instance;
       }
     }
@@ -37,6 +38,7 @@ namespace PokemonSimulator
     {
       InitializeComponent();
       Trainers = TrainerParser.GetInstance.ParseAll();
+      State = SimulationState.Start;
       Turn = 0;
     }
 
@@ -46,141 +48,40 @@ namespace PokemonSimulator
       NextAction();
     }
 
-    private Task NextAction()
+    private void NextAction()
     {
-      if (ChooseTrainers(out var nextAction)) return nextAction;
+      var action = ChooseAction(State);
 
-      if (ChoosePokemon(out var task)) return task;
-
-      if (ChooseMove(out var moveTask))
-      {
-        Turn++;
-        return moveTask;
-      }
-
-      return Task.CompletedTask;
+      action.Execute();
     }
 
-    private bool ChooseMove(out Task moveTask)
+    private ISimulatorAction ChooseAction(SimulationState state)
     {
-      moveTask = Task.CompletedTask;
-      var move = new Move();
-      if (Turn % 2 == 0)
+      switch (state)
       {
-        move = ActivePokemon1.Moves.First();
-        Instance.logBox.Items.Add(ActivePokemon1.Name + " uses " + move.Name);
+        case SimulationState.Start:
+          return new ChooseTrainersAction(Instance);
+        case SimulationState.Trainer1Turn:
+          return new TrainerTurnAction(Trainer1, ActivePokemon1, ActivePokemon2, Instance);
+        case SimulationState.Trainer2Turn:
+          return new TrainerTurnAction(Trainer2, ActivePokemon2, ActivePokemon1, Instance);
+        default:
+          throw new ArgumentOutOfRangeException(nameof(state), state, "State is not handled properly");
       }
-      else
-      {
-        move = ActivePokemon2.Moves.First();
-        Instance.logBox.Items.Add(ActivePokemon2.Name + " uses " + move.Name);
-      }
-
-      return UseMove(move);
     }
 
-    private bool UseMove(Move move)
+    public void FlipTurn()
     {
-      if (Turn % 2 == 0)
+      if (State == SimulationState.Trainer1Turn)
       {
-        Instance.logBox.Items.Add(ActivePokemon2.Name + "s HP is dropped from" + ActivePokemon2.CurrentHP + " to " + (ActivePokemon2.CurrentHP - move.Power));
-        ActivePokemon2.CurrentHP -= move.Power;
-
-        // Check of hp <= 0
-        if (ActivePokemon2.CurrentHP <= 0)
-        {
-          Instance.logBox.Items.Add(ActivePokemon2.Name + "has fainted.");
-          ActivePokemon2 = null;
-        }
-
-        // ALS hp <= 0 -> active pokemon = null
-        // logbox zeggen dat pokemon gefaint is
-      }
-      else
-      {
-        Instance.logBox.Items.Add(ActivePokemon1.Name + "s HP is dropped from" + ActivePokemon1.CurrentHP + " to " + (ActivePokemon1.CurrentHP - move.Power));
-        ActivePokemon1.CurrentHP -= move.Power;
-
-        // Check of hp <= 0
-        if (ActivePokemon1.CurrentHP <= 0)
-        {
-          Instance.logBox.Items.Add(ActivePokemon1.Name + "has fainted.");
-          ActivePokemon1 = null;
-        }
-        // ALS hp <= 0 -> active pokemon = null
-        // logbox zeggen dat pokemon gefaint is
+        State = SimulationState.Trainer2Turn;
+        return;
       }
 
-      return true;
-    }
-
-    private bool ChoosePokemon(out Task task)
-    {
-      task = Task.CompletedTask;
-
-      if (ActivePokemon1 == null)
+      if (State == SimulationState.Trainer2Turn)
       {
-        ActivePokemon1 = Trainer1.Pokemon.First(x => x.CurrentHP > 0);
-        Instance.logBox.Items.Add(Trainer1.Name + " sent out his " + ActivePokemon1.Name);
-        {
-          return true;
-        }
+        State = SimulationState.Trainer1Turn;
       }
-
-      if (ActivePokemon2 == null)
-      {
-        try
-        {
-          ActivePokemon2 = Trainer2.Pokemon.First(x => x.CurrentHP > 0);
-        }
-        catch (Exception e)
-        {
-          Instance.logBox.Items.Add(Trainer2.Name + " has no usable pokemon");
-          return true;
-        }
-        Instance.logBox.Items.Add(Trainer2.Name + " sent out his " + ActivePokemon2.Name);
-        {
-          return true;
-        }
-      }
-
-      return false;
-    }
-
-    private bool ChooseTrainers(out Task nextAction)
-    {
-      nextAction = Task.CompletedTask;
-
-      if (Trainer1 == null)
-      {
-        ChooseTrainer1();
-        {
-          return true;
-        }
-      }
-
-      if (Trainer2 == null)
-      {
-        ChooseTrainer2();
-        {
-          return true;
-        }
-      }
-
-      return false;
-    }
-
-
-    private void ChooseTrainer1()
-    {
-      Trainer1 = Trainers.First();
-      Instance.logBox.Items.Add("Chosen trainer: " + Trainer1.Name);
-    }
-
-    private void ChooseTrainer2()
-    {
-      Trainer2 = Trainers.First(x => x.Name != Trainer1.Name);
-      Instance.logBox.Items.Add("Chosen trainer: " + Trainer2.Name);
     }
   }
 }
