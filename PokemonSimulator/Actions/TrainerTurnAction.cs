@@ -46,7 +46,7 @@ namespace PokemonSimulator.Actions
     private void UseMove(Move move)
     {
       var damage = move.Power;
-      Instance.logBox.Items.Add(_enemyPokemon.Name + "s HP is dropped from" + _enemyPokemon.CurrentHP + " to " + (_enemyPokemon.CurrentHP - damage));
+      Instance.Log(_enemyPokemon.Name + "s HP is dropped from" + _enemyPokemon.CurrentHP + " to " + (_enemyPokemon.CurrentHP - damage));
 
       ApplyDamage(damage);
     }
@@ -59,7 +59,7 @@ namespace PokemonSimulator.Actions
           Instance.ActivePokemon2.CurrentHP -= damage;
           if (Instance.ActivePokemon2.CurrentHP <= 0)
           {
-            Instance.logBox.Items.Add(Instance.ActivePokemon2.Name + "has fainted.");
+            Instance.Log(Instance.ActivePokemon2.Name + "has fainted.");
             Instance.ActivePokemon2 = null;
           }
           break;
@@ -67,7 +67,7 @@ namespace PokemonSimulator.Actions
           Instance.ActivePokemon1.CurrentHP -= damage;
           if (Instance.ActivePokemon1.CurrentHP <= 0)
           {
-            Instance.logBox.Items.Add(Instance.ActivePokemon1.Name + "has fainted.");
+            Instance.Log(Instance.ActivePokemon1.Name + "has fainted.");
             Instance.ActivePokemon1 = null;
           }
           break;
@@ -84,17 +84,18 @@ namespace PokemonSimulator.Actions
         {
           case SimulationState.Trainer1Turn:
             Instance.ActivePokemon1 = _trainer.Pokemon.First(x => x.CurrentHP > 0);
-            Instance.logBox.Items.Add(_trainer.Name + " sent out his " + Instance.ActivePokemon1.Name);
+            Instance.Log(_trainer.Name + " sent out his " + Instance.ActivePokemon1.Name);
             break;
           case SimulationState.Trainer2Turn:
             Instance.ActivePokemon2 = _trainer.Pokemon.First(x => x.CurrentHP > 0);
-            Instance.logBox.Items.Add(_trainer.Name + " sent out his " + Instance.ActivePokemon2.Name);
+            Instance.Log(_trainer.Name + " sent out his " + Instance.ActivePokemon2.Name);
             break;
         }
       }
       else
       {
-        Instance.logBox.Items.Add(_trainer.Name + " is out of usable Pokemon");
+        Instance.Log(_trainer.Name + " is out of usable Pokemon");
+        Instance.RemovePokemon();
         Instance.State = Instance.Turn % 2 == 0 ? SimulationState.Trainer1Win : SimulationState.Trainer2Win;
       }
     }

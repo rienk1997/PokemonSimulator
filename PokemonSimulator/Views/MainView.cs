@@ -13,6 +13,8 @@ namespace PokemonSimulator
   {
     public SimulationState State { get; set; }
     public int Turn { get; set; }
+    public int Trainer1Index { get; set; }
+    public int Trainer2Index { get; set; }
     public Trainer Trainer1 { get; set; }
     public Trainer Trainer2 { get; set; }
     public Pokemon ActivePokemon1 { get; set; }
@@ -20,7 +22,7 @@ namespace PokemonSimulator
 
     private static MainView Instance;
 
-    public ICollection<Trainer> Trainers { get; set; }
+    public IList<Trainer> Trainers { get; set; }
 
     public static MainView GetInstance
     {
@@ -29,7 +31,7 @@ namespace PokemonSimulator
         if (Instance == null)
         {
           Instance = new MainView();
-          Instance.logBox.Items.Add("Initiating MainView Instance");
+          Instance.Log("Initiating MainView Instance");
         }
         return Instance;
       }
@@ -40,6 +42,8 @@ namespace PokemonSimulator
       Trainers = TrainerParser.GetInstance.ParseAll();
       State = SimulationState.Start;
       Turn = 0;
+      Trainer1Index = 0;
+      Trainer2Index = 0;
     }
 
 
@@ -60,6 +64,8 @@ namespace PokemonSimulator
       switch (state)
       {
         case SimulationState.Start:
+        case SimulationState.Trainer1Win:
+        case SimulationState.Trainer2Win:
           return new ChooseTrainersAction(Instance);
         case SimulationState.Trainer1Turn:
           return new TrainerTurnAction(Trainer1, ActivePokemon1, ActivePokemon2, Instance);
@@ -82,6 +88,19 @@ namespace PokemonSimulator
       {
         State = SimulationState.Trainer1Turn;
       }
+    }
+
+    public void RemovePokemon()
+    {
+      ActivePokemon1 = null;
+      ActivePokemon2 = null;
+    }
+
+    public void Log(string message)
+    {
+      if(Instance.logBox.Items.Count > 15)
+        Instance.logBox.Items.RemoveAt(0);
+      Instance.logBox.Items.Add(message);
     }
   }
 }

@@ -12,6 +12,7 @@ namespace PokemonSimulator.Models
     Trainer1Turn,
     Trainer2Turn,
     Trainer1Win,
-    Trainer2Win
+    Trainer2Win,
+    Done
   }
 }

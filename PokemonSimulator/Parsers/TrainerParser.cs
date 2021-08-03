@@ -11,9 +11,9 @@ namespace PokemonSimulator.Parsers
 {
   public class TrainerParser
   {
-    public ICollection<Trainer> Trainers { get; set; }
-    public ICollection<Pokemon> Pokemon { get; set; }
-    public ICollection<Move> Moves { get; set; }
+    public IList<Trainer> Trainers { get; set; }
+    public IList<Pokemon> Pokemon { get; set; }
+    public IList<Move> Moves { get; set; }
 
     private static TrainerParser Instance = null;
     public static TrainerParser GetInstance
@@ -53,7 +53,7 @@ namespace PokemonSimulator.Parsers
         Moves = JsonConvert.DeserializeObject<List<Move>>(json);
       }
     }
-    public ICollection<Trainer> ParseAll()
+    public IList<Trainer> ParseAll()
     {
       foreach (var trainer in Trainers)
       {
