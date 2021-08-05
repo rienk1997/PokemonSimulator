@@ -95,6 +95,7 @@
     <Compile Include="Actions\ChooseTrainersAction.cs" />
     <Compile Include="Actions\ISimulatorAction.cs" />
     <Compile Include="Actions\TrainerTurnAction.cs" />
+    <Compile Include="Calculators\MoveDamageCalculator.cs" />
     <Compile Include="Models\Move.cs" />
     <Compile Include="Models\Pokemon.cs" />
     <Compile Include="Models\SimulationState.cs" />
