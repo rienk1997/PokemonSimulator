@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PokemonSimulator.Calculators;
 using PokemonSimulator.Models;
 
 namespace PokemonSimulator.Actions
@@ -14,6 +15,8 @@ namespace PokemonSimulator.Actions
 
     private readonly Pokemon _enemyPokemon;
 
+    private readonly MoveDamageCalculator _damageCalculator;
+
     private readonly MainView Instance;
     public TrainerTurnAction(Trainer trainer, Pokemon pokemon, Pokemon enemyPokemon, MainView instance)
     {
@@ -21,6 +24,8 @@ namespace PokemonSimulator.Actions
       _pokemon = pokemon;
       Instance = instance;
       _enemyPokemon = enemyPokemon;
+
+      _damageCalculator = new MoveDamageCalculator(pokemon, enemyPokemon);
     }
 
     public void Execute()
@@ -45,7 +50,7 @@ namespace PokemonSimulator.Actions
 
     private void UseMove(Move move)
     {
-      var damage = move.Power;
+      var damage = _damageCalculator.CalculateDamage(move);
       Instance.Log(_enemyPokemon.Name + "s HP is dropped from" + _enemyPokemon.CurrentHP + " to " + (_enemyPokemon.CurrentHP - damage));
 
       ApplyDamage(damage);
