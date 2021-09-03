@@ -6,19 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PokemonSimulator.Calculators;
+using PokemonSimulator.Data;
 using PokemonSimulator.Models;
 
 namespace PokemonSimulator.Controllers
 {
   public class DatabaseController
   {
-    private static string _connectionString =
-      "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Projects\\PokemonSimulator\\PokemonSimulator\\Data\\Trainers.mdf;Integrated Security=True";
+
 
     public static List<Trainer> LoadTrainers()
     {
       var trainers = new List<Trainer>();
-      using (var conn = new SqlConnection(_connectionString))
+      using (var conn = new SqlConnection(ConnectionStringProvider.ConnectionString))
       {
         var sqlString = @"SELECT TrainerPokemonId, TrainerId, Name FROM TrainerPokemon tp
                              Inner JOIN Trainers t on t.Id = tp.TrainerId";
@@ -58,7 +58,7 @@ namespace PokemonSimulator.Controllers
         @"SELECT TrainerPokemonId, TrainerId, Id, Name, Level, BaseHP, BaseAttack, BaseDefense From TrainerPokemon tp
                         INNER JOIN Pokemon p on tp.PokemonId = p.Id
                         WHERE tp.TrainerId = @TrainerId";
-      using (var conn = new SqlConnection(_connectionString))
+      using (var conn = new SqlConnection(ConnectionStringProvider.ConnectionString))
       {
         using (var command = new SqlCommand(sqlString, conn))
         {
@@ -106,7 +106,7 @@ namespace PokemonSimulator.Controllers
           INNER JOIN Moves m on tpm.MoveId = m.Id
           WHERE tpm.TrainerPokemonId = @TrainerPokemonId";
 
-      using (var conn = new SqlConnection(_connectionString))
+      using (var conn = new SqlConnection(ConnectionStringProvider.ConnectionString))
       {
         using (var command = new SqlCommand(sqlString, conn))
         {

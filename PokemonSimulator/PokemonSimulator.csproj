@@ -54,7 +54,9 @@
     <Reference Include="PokeApi.NET, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\PokeApi.NET.1.1.2\lib\net45\PokeApi.NET.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -113,6 +115,7 @@
     <Compile Include="Calculators\StatCalculator.cs" />
     <Compile Include="Calculators\MoveDamageCalculator.cs" />
     <Compile Include="Controllers\DatabaseController.cs" />
+    <Compile Include="Data\ConnectionStringProvider.cs" />
     <Compile Include="Models\Move.cs" />
     <Compile Include="Models\Pokemon.cs" />
     <Compile Include="Models\SimulationState.cs" />
