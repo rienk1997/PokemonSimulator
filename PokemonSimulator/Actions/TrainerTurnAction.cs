@@ -50,6 +50,7 @@ namespace PokemonSimulator.Actions
 
     private void UseMove(Move move)
     {
+      Instance.Log(_pokemon.Name + " used " + move.Name + "!");
       var damage = _damageCalculator.CalculateDamage(move);
       Instance.Log(_enemyPokemon.Name + "s HP is dropped from" + _enemyPokemon.CurrentHP + " to " + (_enemyPokemon.CurrentHP - damage));
 

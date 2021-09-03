@@ -27,7 +27,6 @@ namespace PokemonSimulator.Models
         PokedexNumber = pokemon.PokedexNumber,
         Name = pokemon.Name,
         CurrentHP = pokemon.CurrentHP,
-        HP = pokemon.HP,
         Level = pokemon.Level,
         Moves = pokemon.Moves
       };

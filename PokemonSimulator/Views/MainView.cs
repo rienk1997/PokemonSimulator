@@ -1,11 +1,12 @@
 ﻿using PokemonSimulator.Models;
-using PokemonSimulator.Parsers;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PokemonSimulator.Actions;
+using PokemonSimulator.Controllers;
 
 namespace PokemonSimulator
 {
@@ -22,7 +23,7 @@ namespace PokemonSimulator
 
     private static MainView Instance;
 
-    public IList<Trainer> Trainers { get; set; }
+    public IList<Trainer> Trainers { get; set; } = new List<Trainer>();
 
     public static MainView GetInstance
     {
@@ -39,7 +40,9 @@ namespace PokemonSimulator
     private MainView()
     {
       InitializeComponent();
-      Trainers = TrainerParser.GetInstance.ParseAll();
+      
+      Trainers = DatabaseController.LoadTrainers();
+
       State = SimulationState.Start;
       Turn = 0;
       Trainer1Index = 0;
