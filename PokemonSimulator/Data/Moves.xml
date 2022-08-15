@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<Moves>
+		<Move>
+			<Id>1</Id>
+			<Name>Tackle</Name>
+			<Power>40</Power>
+			<Accuracy>95</Accuracy>
+		</Move>
+		<Move>
+			<Id>2</Id>
+			<Name>Scratch</Name>
+			<Power>40</Power>
+			<Accuracy>100</Accuracy>
+		</Move>
+	</Moves>
+</Root>

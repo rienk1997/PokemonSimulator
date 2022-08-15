@@ -114,12 +114,12 @@
     <Compile Include="Actions\TrainerTurnAction.cs" />
     <Compile Include="Calculators\StatCalculator.cs" />
     <Compile Include="Calculators\MoveDamageCalculator.cs" />
-    <Compile Include="Controllers\DatabaseController.cs" />
-    <Compile Include="Data\ConnectionStringProvider.cs" />
+    <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Models\Move.cs" />
     <Compile Include="Models\Pokemon.cs" />
     <Compile Include="Models\SimulationState.cs" />
     <Compile Include="Models\Trainer.cs" />
+    <Compile Include="Models\TrainerPokemon.cs" />
     <Compile Include="Models\Types.cs" />
     <Compile Include="TrainersDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -188,13 +188,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Trainers.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Trainers_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Trainers.mdf</DependentUpon>
-    </Content>
+    <Content Include="Data\Moves.xml" />
+    <Content Include="Data\Pokemon.xml" />
+    <Content Include="Data\Trainers.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

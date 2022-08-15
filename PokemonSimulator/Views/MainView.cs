@@ -18,12 +18,12 @@ namespace PokemonSimulator
     public int Trainer2Index { get; set; }
     public Trainer Trainer1 { get; set; }
     public Trainer Trainer2 { get; set; }
-    public Pokemon ActivePokemon1 { get; set; }
-    public Pokemon ActivePokemon2 { get; set; }
+    public TrainerPokemon ActivePokemon1 { get; set; }
+    public TrainerPokemon ActivePokemon2 { get; set; }
 
     private static MainView Instance;
 
-    public IList<Trainer> Trainers { get; set; } = new List<Trainer>();
+    public DataController DataController { get; set; }
 
     public static MainView GetInstance
     {
@@ -40,8 +40,8 @@ namespace PokemonSimulator
     private MainView()
     {
       InitializeComponent();
-      
-      Trainers = DatabaseController.LoadTrainers();
+
+      DataController = DataController.GetInstance;
 
       State = SimulationState.Start;
       Turn = 0;

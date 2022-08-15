@@ -11,14 +11,14 @@ namespace PokemonSimulator.Actions
   public class TrainerTurnAction: ISimulatorAction
   {
     private readonly Trainer _trainer;
-    private readonly Pokemon _pokemon;
+    private readonly TrainerPokemon _pokemon;
 
-    private readonly Pokemon _enemyPokemon;
+    private readonly TrainerPokemon _enemyPokemon;
 
     private readonly MoveDamageCalculator _damageCalculator;
 
     private readonly MainView Instance;
-    public TrainerTurnAction(Trainer trainer, Pokemon pokemon, Pokemon enemyPokemon, MainView instance)
+    public TrainerTurnAction(Trainer trainer, TrainerPokemon pokemon, TrainerPokemon enemyPokemon, MainView instance)
     {
       _trainer = trainer;
       _pokemon = pokemon;
