@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<Trainers>
+		<Trainer>
+			<Id>1</Id>
+			<Name>Blue - Bulbasaur #1</Name>
+			<PokemonList>
+				<Pokemon>
+					<Name>Charmander</Name>
+					<Level>5</Level>
+					<Moves>
+						<Move>Scratch</Move>
+					</Moves>
+				</Pokemon>
+			</PokemonList>
+		</Trainer>
+		<Trainer>
+			<Id>1</Id>
+			<Name>Blue - Charmander #1</Name>
+			<PokemonList>
+				<Pokemon>
+					<Name>Squirtle</Name>
+					<Level>5</Level>
+					<Moves>
+						<Move>Tackle</Move>
+					</Moves>
+				</Pokemon>
+			</PokemonList>
+		</Trainer>
+		<Trainer>
+			<Id>1</Id>
+			<Name>Blue - Squirtle #1</Name>
+			<PokemonList>
+				<Pokemon>
+					<Name>Bulbasaur</Name>
+					<Level>5</Level>
+					<Moves>
+						<Move>Tackle</Move>
+					</Moves>
+				</Pokemon>
+			</PokemonList>
+		</Trainer>
+	</Trainers>
+</Root>

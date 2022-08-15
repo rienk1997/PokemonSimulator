@@ -24,14 +24,15 @@ namespace PokemonSimulator.Actions
       if (Instance.State == SimulationState.Trainer2Win)
         Instance.Trainer1Index++;
 
-      if (Instance.Trainer2Index > Instance.Trainers.Count - 2)
+      var trainersCount = Instance.DataController.GetTrainersCount();
+      if (Instance.Trainer2Index > trainersCount - 2)
       {
         Instance.Log("Trainer: " + Instance.Trainer1.Name + " has battled every opponent");
         Instance.Trainer1Index++;
         Instance.Trainer2Index = 0;
       }
 
-      if (Instance.Trainer1Index > Instance.Trainers.Count - 1)
+      if (Instance.Trainer1Index > trainersCount - 1)
       {
         Instance.Log("All battles done!");
         Instance.State = SimulationState.Done;
@@ -45,13 +46,13 @@ namespace PokemonSimulator.Actions
 
     private void ChooseTrainer1()
     {
-      Instance.Trainer1 = Instance.Trainers[Instance.Trainer1Index].CreateCopy();
+      Instance.Trainer1 = Instance.DataController.GetTrainer(Instance.Trainer1Index).CreateCopy();
       Instance.Log("Chosen trainer: " + Instance.Trainer1.Name);
     }
 
     private void ChooseTrainer2()
     {
-      Instance.Trainer2 = Instance.Trainers.Where(x => x.Name != Instance.Trainer1.Name).ToList()[Instance.Trainer2Index].CreateCopy();
+      Instance.Trainer2 = Instance.DataController.GetTrainers().Where(x => x.Name != Instance.Trainer1.Name).ToList()[Instance.Trainer2Index].CreateCopy();
       Instance.Log("Chosen trainer: " + Instance.Trainer2.Name);
     }
   }

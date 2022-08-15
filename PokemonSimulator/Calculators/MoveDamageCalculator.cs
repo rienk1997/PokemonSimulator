@@ -9,10 +9,10 @@ namespace PokemonSimulator.Calculators
 {
   public class MoveDamageCalculator
   {
-    private Pokemon _attackingPokemon;
-    private Pokemon _defendingPokemon;
+    private TrainerPokemon _attackingPokemon;
+    private TrainerPokemon _defendingPokemon;
 
-    public MoveDamageCalculator(Pokemon attackingPokemon, Pokemon defendingPokemon)
+    public MoveDamageCalculator(TrainerPokemon attackingPokemon, TrainerPokemon defendingPokemon)
     {
       _attackingPokemon = attackingPokemon;
       _defendingPokemon = defendingPokemon;
