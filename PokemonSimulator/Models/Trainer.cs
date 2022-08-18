@@ -49,8 +49,12 @@ namespace PokemonSimulator.Models
         PokedexNumber = pokemon.PokedexNumber,
         Name = pokemon.Name,
         CurrentHP = pokemon.CurrentHP,
+        Stats = pokemon.Stats,
+        EVs = pokemon.EVs,
+        IVs = pokemon.IVs,
         Level = pokemon.Level,
-        Moves = pokemon.Moves
+        Moves = pokemon.Moves,
+        Nature = pokemon.Nature
       };
     }
   }
@@ -75,6 +79,15 @@ namespace PokemonSimulator.Models
 
     [XmlElement(ElementName = "Moves")]
     public Moves Moves;
+
+    [XmlElement(ElementName = "Nature")]
+    public Nature Nature;
+
+    [XmlElement(ElementName = "IVs")]
+    public Stats IVs;
+
+    [XmlElement(ElementName = "EVs")]
+    public Stats EVs;
   }
 
   [XmlRoot(ElementName = "Moves")]

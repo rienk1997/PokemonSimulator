@@ -22,7 +22,7 @@ namespace PokemonSimulator.Calculators
     {
       decimal levelFactor = (2 * _attackingPokemon.Level) / 5 + 2;
 
-      decimal damage = (levelFactor * move.Power) / 50 + 2;
+      decimal damage = (levelFactor * move.Power * (_attackingPokemon.Stats.Attack / _defendingPokemon.Stats.Defense)) / 50 + 2;
       return decimal.ToInt32(damage);
     }
   }

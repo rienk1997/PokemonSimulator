@@ -11,6 +11,22 @@
 					<Moves>
 						<Move>Scratch</Move>
 					</Moves>
+					<IVs>
+						<HP>10</HP>
+						<Attack>5</Attack>
+						<Defense>1</Defense>
+						<SpAttack>0</SpAttack>
+						<SpDefense>0</SpDefense>
+						<Speed>0</Speed>
+					</IVs>
+					<EVs>
+						<HP>10</HP>
+						<Attack>5</Attack>
+						<Defense>1</Defense>
+						<SpAttack>0</SpAttack>
+						<SpDefense>0</SpDefense>
+						<Speed>0</Speed>
+					</EVs>
 				</Pokemon>
 			</PokemonList>
 		</Trainer>

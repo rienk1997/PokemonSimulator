@@ -21,11 +21,8 @@ namespace PokemonSimulator.Models
     public int PokedexNumber { get; set; }
     [XmlElement(ElementName = "Name")]
     public string Name { get; set; }
-    [XmlElement(ElementName = "BaseHP")]
-    public int HP { get; set; }
-    [XmlElement(ElementName = "BaseAttack")]
-    public int Attack { get; set; }
-    [XmlElement(ElementName = "BaseDefense")]
-    public int Defense { get; set; }
+    [XmlElement(ElementName = "BaseStats")]
+    public Stats BaseStats { get; set; }
+
   }
 }

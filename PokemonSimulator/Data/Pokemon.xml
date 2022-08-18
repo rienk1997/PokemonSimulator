@@ -4,23 +4,38 @@
 		<Pokemon>
 			<Id>1</Id>
 			<Name>Bulbasaur</Name>
-			<BaseHP>45</BaseHP>
-			<BaseAttack>49</BaseAttack>
-			<BaseDefense>49</BaseDefense>
+			<BaseStats>
+				<HP>45</HP>
+				<Attack>49</Attack>
+				<Defense>49</Defense>
+				<SpAttack>65</SpAttack>
+				<SpDefense>65</SpDefense>
+				<Speed>45</Speed>
+			</BaseStats>
 		</Pokemon>
 		<Pokemon>
 			<Id>4</Id>
 			<Name>Charmander</Name>
-			<BaseHP>39</BaseHP>
-			<BaseAttack>52</BaseAttack>
-			<BaseDefense>43</BaseDefense>
+			<BaseStats>
+				<HP>39</HP>
+				<Attack>52</Attack>
+				<Defense>43</Defense>
+				<SpAttack>60</SpAttack>
+				<SpDefense>50</SpDefense>
+				<Speed>65</Speed>
+			</BaseStats>
 		</Pokemon>
 		<Pokemon>
 			<Id>7</Id>
 			<Name>Squirtle</Name>
-			<BaseHP>44</BaseHP>
-			<BaseAttack>48</BaseAttack>
-			<BaseDefense>65</BaseDefense>
+			<BaseStats>
+				<HP>44</HP>
+				<Attack>48</Attack>
+				<Defense>65</Defense>
+				<SpAttack>50</SpAttack>
+				<SpDefense>64</SpDefense>
+				<Speed>43</Speed>
+			</BaseStats>
 		</Pokemon>
 	</PokemonList>
 </Root>

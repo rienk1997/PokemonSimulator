@@ -116,8 +116,10 @@
     <Compile Include="Calculators\MoveDamageCalculator.cs" />
     <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Models\Move.cs" />
+    <Compile Include="Models\Nature.cs" />
     <Compile Include="Models\Pokemon.cs" />
     <Compile Include="Models\SimulationState.cs" />
+    <Compile Include="Models\Stat.cs" />
     <Compile Include="Models\Trainer.cs" />
     <Compile Include="Models\TrainerPokemon.cs" />
     <Compile Include="Models\Types.cs" />
